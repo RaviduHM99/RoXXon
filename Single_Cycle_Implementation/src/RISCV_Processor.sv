@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 `include "../src/Program_Counter.sv"
 `include "../src/INST_MEMORY.sv"
-`include "../src/Reg_File_Input.sv"
 `include "../src/Register_File.sv"
 `include "../src/Immediate_Generation.sv"
 `include "../src/ALU_CU.sv"
@@ -34,8 +33,6 @@ module RISCV_Processor(
     logic [2:0] mem_type;
     logic read_enable;
     logic [2:0] ALU_OUT_CTRL;
-    logic [4:0] READ_Addr_1;
-    logic [4:0] READ_Addr_2;
     logic [31:0] Imm_Gen;
     logic [3:0] ALUops;
     logic [31:0] ALU_In;
@@ -54,14 +51,11 @@ module RISCV_Processor(
     
     logic REG_READ_Ctrl_1;
     logic REG_READ_Ctrl_2;
-
-    Reg_File_Input RFI(.Reg_Addr_1(Instruction[19:15]), .Reg_Addr_2(Instruction[24:20]), .REG_READ_Ctrl_1(REG_READ_Ctrl_1),
-    .REG_READ_Ctrl_2(REG_READ_Ctrl_2),
-    .READ_Addr_1(READ_Addr_1), .READ_Addr_2(READ_Addr_2));
-    
-            
-    Register_File RF(.Reg_WRITE(Reg_WRITE), .reset(reset), .clk(clk), .READ_Addr_1(READ_Addr_1), .READ_Addr_2(READ_Addr_2),
+           
+    Register_File RF(.Reg_WRITE(Reg_WRITE), .reset(reset), .clk(clk),
     .WRITE_Addr(Instruction[11:7]), .WRITE_Data(WRITE_Data),
+    .Reg_Addr_1(Instruction[19:15]), .Reg_Addr_2(Instruction[24:20]),
+    .REG_READ_Ctrl_1(REG_READ_Ctrl_1), .REG_READ_Ctrl_2(REG_READ_Ctrl_2),
     .READ_Data_1(READ_Data_1), .READ_Data_2(READ_Data_2)); 
     
     Immediate_Generation IG(.INST(Instruction), .IMM_CTRL(IMM_CTRL), .Imm_Gen(Imm_Gen));

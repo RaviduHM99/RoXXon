@@ -24,13 +24,21 @@ module Register_File(
     input logic Reg_WRITE,
     input logic reset,
     input logic clk,
-    input logic [4:0] READ_Addr_1,
-    input logic [4:0] READ_Addr_2,
     input logic [4:0] WRITE_Addr,
     input logic [31:0] WRITE_Data,
+    input logic [4:0] Reg_Addr_1,
+    input logic [4:0] Reg_Addr_2,
+    input logic REG_READ_Ctrl_1,
+    input logic REG_READ_Ctrl_2,
     output logic [31:0] READ_Data_1,
     output logic [31:0] READ_Data_2
     );
+
+    logic [4:0] READ_Addr_1;
+    logic [4:0] READ_Addr_2;
+
+    assign READ_Addr_1 = REG_READ_Ctrl_1 ?  Reg_Addr_1 : 5'd0; 
+    assign READ_Addr_2 = REG_READ_Ctrl_2 ?  Reg_Addr_2 : 5'd0; 
     
 	reg [31:0]REG_File [31:0];
     
