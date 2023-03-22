@@ -1,6 +1,4 @@
 `timescale 1ns / 1ps
-`include "../src/RISCV_Processor.sv"
-
 
 module RISCV_Processor_tb();
     timeunit 1ns;

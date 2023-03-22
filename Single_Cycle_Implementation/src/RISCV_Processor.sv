@@ -1,17 +1,5 @@
 `timescale 1ns / 1ps
-`include "../src/Program_Counter.sv"
-`include "../src/INST_MEMORY.sv"
-`include "../src/Register_File.sv"
-`include "../src/Immediate_Generation.sv"
-`include "../src/ALU_CU.sv"
-`include "../src/ALU_InMux.sv"
-`include "../src/PC_Inc.sv"
-`include "../src/ALU.sv"
-`include "../src/Branch_Logic_Unit.sv"
-`include "../src/PC_Mux.sv"
-`include "../src/ALU_OutMux.sv"
-`include "../src/DATA_MEMORY.sv"
-`include "../src/Control_FSM.sv"
+
 
 
 
